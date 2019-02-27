@@ -250,6 +250,10 @@ open class OAuth2Swift: OAuthSwift {
         } else {
             // special headers
             var finalHeaders: OAuthSwift.Headers? = headers
+            if let contentType = self.contentType {
+                finalHeaders += [kHTTPHeaderContentType: contentType] as OAuthSwift.Headers
+            }
+            
             if accessTokenBasicAuthentification {
 
                 let authentification = "\(self.consumerKey):\(self.consumerSecret)".data(using: String.Encoding.utf8)
